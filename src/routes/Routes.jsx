@@ -4,7 +4,6 @@ import { createBrowserRouter } from 'react-router-dom'
 //imports pages
 import Home from '../pages/Home'
 import About from '../pages/About'
-
 import Contact from '../pages/Contact'
 import NotFound from '../pages/NotFound'
 import Login from '../pages/Login'
@@ -16,6 +15,7 @@ import Admin from '../pages/Admin'
 //imports layouts
 import LayoutIndex from '../layouts/LayoutIndex'
 import RUTAS from '../helpers/RutasHelpers'
+import SuperAdmin from '../pages/SuperAdmin'
 
 
 export const router = createBrowserRouter(
@@ -64,6 +64,13 @@ export const router = createBrowserRouter(
                     element:
 
                         <Admin />
+
+                },
+                {
+                    path: RUTAS.superAdmin,
+                    element:
+
+                        <SuperAdmin />
 
                 },
                 {

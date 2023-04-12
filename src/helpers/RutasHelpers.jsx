@@ -4,11 +4,8 @@ const RUTAS = {
     register: "register",
     about: "about",
 
-    help: "help",
-    faq: "faq",
-    contact: "contact",
-
     admin: "admin",
+    superAdmin: "superAdmin"
 }
 
 export default RUTAS;

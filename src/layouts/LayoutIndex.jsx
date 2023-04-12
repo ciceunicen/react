@@ -1,11 +1,19 @@
 import React from 'react'
-import { Outlet, useNavigation, Navigate } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
+import NavbarGeneralComponent from '../components/Navbar/NavbarGeneralComponent';
+import RUTAS from '../helpers/RutasHelpers';
 
 const LayoutIndex = () => {
     return (
-        <main>
-            <Outlet />
-        </main>
+        <div className="root-layout">
+            <header>
+                <NavbarGeneralComponent />
+            </header>
+
+            <main>
+                <Outlet />
+            </main>
+        </div>
     )
 }
 

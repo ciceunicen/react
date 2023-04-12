@@ -1,0 +1,49 @@
+.containerNav {
+    width: 100%;
+    height: auto;
+    background-image: linear-gradient(rgba(5, 10, 5, 0.80), rgba(90, 40, 90, 0.80)), url(./bg-image.jpg);
+}
+
+.navbarDiv {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logoNav {
+    margin: auto auto;
+    width: 3rem;
+    height: auto;
+    cursor: pointer;
+    margin-top: .5rem;
+
+
+}
+
+.navbarDiv ul li {
+    list-style: none;
+    display: inline-block;
+    margin: auto 2rem auto 0;
+
+
+}
+
+.navbarDiv ul li a {
+    text-decoration: none;
+    color: white;
+    font-family: Roboto, "sans-serif";
+    font-size: 1.2rem;
+
+}
+
+.active {
+    border-bottom: 3px solid yellowgreen;
+}
+
+.navbarDiv ul li:hover::before {
+    width: 100%;
+}

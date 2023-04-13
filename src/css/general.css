@@ -1,6 +1,6 @@
 :root {
     --primary: #bc4123;
-    --secondary: #2b3452;
+    --secondary: #36791E;
 }
 
 * {
@@ -11,6 +11,7 @@
 
 body {
     background: var(--secondary);
+    font-family: 'Inter', sans-serif;
 }
 
 /* button {

@@ -1,15 +1,10 @@
-
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 import { useForm } from 'react-hook-form'
 
 import RUTAS from '../helpers/RutasHelpers';
-
-import Logo from "../../public/images/male_avatar.svg"
+import Logo from "../../public/images/logo-login-registro.png"
 import Eye_InputComponent from '../components/Eye_InputComponent';
-
-
-
 
 
 const Login = () => {
@@ -50,81 +45,97 @@ const Login = () => {
 
     return (
         <>
-            <div className="container_form">
-                <form onSubmit={handleSubmit(enviarDatos)} className="form-container-lavender" >
-                    <div className="div_img" >
-                        <img src={Logo} alt="login-logo" className="logo-img" />
+            <div className="login-container">
+                <div className="info-login">
+                    <img src={Logo} alt="" />
+                    <div className="info">
+                        <p>Campus Universitario</p>
+                        <p>Paraje Arroyo Seco S/N</p>
+                        <p>0249 438 5522</p>
+                        <p>info@cice.unicen.edu.ar</p>
                     </div>
+                </div>
 
-                    <div className='form_box'>
+                <div className="login-form-container">
+                    <form className="form-login" action="" onSubmit={handleSubmit(enviarDatos)}>
+                        <div className="titulo">
+                            <h2>INICIAR SESION</h2>
+                        </div>
+                        <div className="inputLog">
+                            <div className="labInput sig_form">
+                                <label className="label" htmlFor="">Email</label>
+                                <input className="input inputLog"
+                                    type="text"
+                                    name=""
 
-                        <input
-                            type="text"
-                            className="form_input"
-                            placeholder="Usuario"
-                            id='usuario'
-                            {
-                            ...register("usuario", {
-                                required: {
-                                    value: true,
-                                    message: "*Campo requerido"
-                                },
-                                minLength: {
-                                    value: 4,
-                                    message: "*El minimo son 4 caracteres"
-                                },
-                                maxLength: {
-                                    value: 20,
-                                    message: "*El maximo son 20 caracteres"
-                                },
-                            })
-                            }
-                            // style={{ border: colorUserInput }}
-                            onChange={getDatos} />
-                        <label htmlFor="usuario" className="form_label">Usuario</label>
-                        <small className='fail'>{errors?.usuario?.message}</small>
-                    </div>
+                                    {
+                                    ...register("usuario", {
+                                        required: {
+                                            value: true,
+                                            message: "*Campo requerido"
+                                        },
+                                        minLength: {
+                                            value: 4,
+                                            message: "*El minimo son 4 caracteres"
+                                        },
+                                        maxLength: {
+                                            value: 20,
+                                            message: "*El maximo son 20 caracteres"
+                                        },
+                                    })
+                                    }
+                                    // style={{ border: colorUserInput }}
+                                    onChange={getDatos} />
 
-                    <div className='form_box' >
-                        <Eye_InputComponent setShowPwd={setShowPwd} showPwd={showPwd} />
-                        <input
-                            type={showPwd ? "text" : "password"}
 
-                            className="form_input i_pass"
-                            placeholder="Password"
-                            id='password'
-                            {
-                            ...register("password", {
-                                required: {
-                                    value: true,
-                                    message: "*Campo requerido"
-                                },
-                                minLength: {
-                                    value: 6,
-                                    message: "*El minimo son 6 caracteres"
-                                },
-                                maxLength: {
-                                    value: 20,
-                                    message: "*El maximo son 20 caracteres"
-                                },
-                            })
-                            }
+                            </div>
+                            <small className='fail'>{errors?.usuario?.message}</small>
+                            <div className="labInput sig_form">
+                                <label className="label" htmlFor="">Contraseña</label>
+                                <div className="eye-password">
+                                    <input
+                                        className="input input-eye inputLog"
+                                        type={showPwd ? "text" : "Password"}
+                                        name=""
 
-                            // style={{ border: colorPassInput }}
-                            onChange={getDatos}
 
-                        />
-                        <label htmlFor="password" className="form_label">Password</label>
-                        <small className='fail'>{errors?.password?.message}</small>
-                    </div>
+                                        {
+                                        ...register("password", {
+                                            required: {
+                                                value: true,
+                                                message: "*Campo requerido"
+                                            },
+                                            minLength: {
+                                                value: 6,
+                                                message: "*El minimo son 6 caracteres"
+                                            },
+                                            maxLength: {
+                                                value: 20,
+                                                message: "*El maximo son 20 caracteres"
+                                            },
+                                        })
+                                        }
 
-                    <div className="d-flex justify-content-end">
-                        <p className="d-inline-block m-0 pe-2 pt-2 fst-italic fw-semibold pointer forgot-text">No tienes cuenta? Registrate!👍</p>
-                    </div>
-                    <div className="px-5">
-                        <button className="btn-purple">Login</button>
-                    </div>
-                </form>
+                                        // style={{ border: colorPassInput }}
+                                        onChange={getDatos}
+                                    />
+                                    <Eye_InputComponent setShowPwd={setShowPwd} showPwd={showPwd} />
+                                </div>
+                                <small className='fail'>{errors?.password?.message}</small>
+                                <a href="">¿Olvidaste tu contraseña?</a>
+                            </div>
+                        </div>
+                        <div className="button-volver">
+                            <button className="button" >
+                                INGRESAR
+                            </button>
+                            <a >¿No sos usuario?</a>
+                            <button className="submit button" disabled>
+                                REGISTRARSE
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </>
     )

@@ -31,6 +31,15 @@ export const router = createBrowserRouter(
         },
         {
 
+            path: RUTAS.register,
+            element:
+
+                <Register />,
+
+            errorElement: < NotFound />,
+        },
+        {
+
             element: <LayoutIndex />,
 
             children: [
@@ -73,13 +82,13 @@ export const router = createBrowserRouter(
                         <SuperAdmin />
 
                 },
-                {
-                    path: RUTAS.register,
-                    element:
+                // {
+                //     path: RUTAS.register,
+                //     element:
 
-                        <Register />
+                //         <Register />
 
-                },
+                // },
             ]
         }
     ]

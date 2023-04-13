@@ -5,12 +5,16 @@ import { useForm } from 'react-hook-form'
 import RUTAS from '../helpers/RutasHelpers';
 import Logo from "../../public/images/logo-login-registro.png"
 import Eye_InputComponent from '../components/Eye_InputComponent';
-
+import { LoginServices } from '../services/LoginServices';
+import useAuth from '../helpers/auth/useAuth'
 
 const Login = () => {
+
     const [showPwd, setShowPwd] = useState(false)
+    const { saveToken, saveUsuerLocal } = useAuth();
 
 
+    let navigate = useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const [datos, setDatos] = useState({
@@ -32,13 +36,23 @@ const Login = () => {
             usuario: datosEnviados.usuario,
             pass: datosEnviados.password,
         }
-        console.log(userData)
-
         try {
+            let data = await LoginServices(userData)
 
+            if (Object.keys(data).length === 0) {
+                // toast.error(`${data}`)
+                // mostrarAlertError(data)
+                throw new Error(`${data}`)
+            }
+
+            let { token } = data;
+            saveToken(token)
+            saveUsuerLocal(data)
+            // mostrarAlertSuccess(data)
+            navigate("home")
         }
         catch (e) {
-
+            console.log(e.message)
         }
         e.target.reset()
     }
@@ -130,7 +144,7 @@ const Login = () => {
                                 INGRESAR
                             </button>
                             <a >¿No sos usuario?</a>
-                            <button className="submit button" disabled>
+                            <button className="submit button" onClick={() => navigate("register")}>
                                 REGISTRARSE
                             </button>
                         </div>

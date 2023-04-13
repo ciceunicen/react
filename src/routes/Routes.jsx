@@ -9,13 +9,17 @@ import NotFound from '../pages/NotFound'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
 import Admin from '../pages/Admin'
+import SuperAdmin from '../pages/SuperAdmin'
 
+//imports rutas publicas y privadas
+import PrivateRoutes from '../routes/PrivateRoutes'
+import PublicRoutes from '../routes/PublicRoutes'
 
 
 //imports layouts
 import LayoutIndex from '../layouts/LayoutIndex'
 import RUTAS from '../helpers/RutasHelpers'
-import SuperAdmin from '../pages/SuperAdmin'
+import ROLES from '../helpers/RolesHelpers'
 
 
 export const router = createBrowserRouter(
@@ -25,7 +29,9 @@ export const router = createBrowserRouter(
             path: RUTAS.login,
             element:
 
-                <Login />,
+                <PublicRoutes>
+                    <Login />
+                </PublicRoutes>,
 
             errorElement: < NotFound />,
         },
@@ -33,8 +39,9 @@ export const router = createBrowserRouter(
 
             path: RUTAS.register,
             element:
-
-                <Register />,
+                <PublicRoutes>
+                    <Register />
+                </PublicRoutes>,
 
             errorElement: < NotFound />,
         },
@@ -72,14 +79,20 @@ export const router = createBrowserRouter(
                     path: RUTAS.admin,
                     element:
 
-                        <Admin />
+                        < PrivateRoutes props={{ super: ROLES.super, admin: ROLES.admin }}  >
+                            <Admin />
+                        </PrivateRoutes>
+
 
                 },
                 {
                     path: RUTAS.superAdmin,
                     element:
 
-                        <SuperAdmin />
+                        < PrivateRoutes props={{ super: ROLES.super }} >
+                            < SuperAdmin />
+                        </PrivateRoutes>
+
 
                 },
                 // {

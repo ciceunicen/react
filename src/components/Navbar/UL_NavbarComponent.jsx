@@ -2,7 +2,7 @@ import RUTAS from '../../helpers/RutasHelpers';
 import LI_navbarComponent from './LI_navbarComponent';
 
 
-const UL_NavbarComponent = ({ cerrarSesion }) => {
+const UL_NavbarComponent = ({ cerrarSesion, tieneRol }) => {
 
 
 
@@ -13,15 +13,20 @@ const UL_NavbarComponent = ({ cerrarSesion }) => {
 
 
 
+            {
+                tieneRol("admin") && (
+                    <>
+                        <LI_navbarComponent to={RUTAS.admin} sitio="Admin" />
 
-            <LI_navbarComponent to={RUTAS.admin} sitio="Admin" />
+                        {
+                            tieneRol("super_admin") && (
+                                <LI_navbarComponent to={RUTAS.superAdmin} sitio="SuperAdm" />
+                            )
+                        }
+                    </>
+                )
 
-
-            <LI_navbarComponent to={RUTAS.superAdmin} sitio="SuperAdm" />
-
-
-
-
+            }
 
             <LI_navbarComponent to={RUTAS.login} onClick={cerrarSesion} sitio="Cerrar Sesion" />
         </ul>

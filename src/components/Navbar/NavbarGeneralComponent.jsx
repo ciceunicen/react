@@ -3,10 +3,11 @@ import { Navigate } from 'react-router-dom'
 import UL_NavbarComponent from './UL_NavbarComponent';
 import ImagesComponents from '../ImagesComponents';
 
-
+import useAuth from '../../helpers/auth/useAuth';
 
 const NavComponent = () => {
 
+    let { tieneRol } = useAuth()
 
     const cerrarSesion = async () => {
         return <Navigate to={RUTAS.login} />
@@ -19,7 +20,7 @@ const NavComponent = () => {
                     <a href={RUTAS.home}>
                         <ImagesComponents src="./public/images/male_avatar.svg" className="logoNav" href={RUTAS.login}></ImagesComponents>
                     </a>
-                    <UL_NavbarComponent cerrarSesion={cerrarSesion} />
+                    <UL_NavbarComponent cerrarSesion={cerrarSesion} tieneRol={tieneRol} />
                 </div>
             </div>
         </>

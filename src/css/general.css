@@ -1,0 +1,29 @@
+:root {
+    --primary: #bc4123;
+    --secondary: #36791E;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--secondary);
+    font-family: 'Inter', sans-serif;
+}
+
+/* button {
+    border: 0;
+    padding: 8px;
+    border-radius: 4px;
+    color: white;
+    background: var(--primary);
+    cursor: pointer;
+} */
+
+main {
+    max-width: 1200px;
+    margin: auto auto;
+}

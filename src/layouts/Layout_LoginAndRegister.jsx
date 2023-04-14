@@ -1,9 +1,9 @@
 import { Outlet } from 'react-router-dom'
 
-const LayoutLogin = () => {
+const Layout_LoginAndRegister = () => {
     return (
         <Outlet />
     )
 }
 
-export default LayoutLogin
+export default Layout_LoginAndRegister

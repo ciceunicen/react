@@ -9,39 +9,72 @@ import NotFound from '../pages/NotFound'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
 import Admin from '../pages/Admin'
+import SuperAdmin from '../pages/SuperAdmin'
 
+//imports rutas publicas y privadas
+import PrivateRoutes from '../routes/PrivateRoutes'
+import PublicRoutes from '../routes/PublicRoutes'
 
 
 //imports layouts
 import LayoutIndex from '../layouts/LayoutIndex'
 import RUTAS from '../helpers/RutasHelpers'
-import SuperAdmin from '../pages/SuperAdmin'
+import ROLES from '../helpers/RolesHelpers'
+import Layout_LoginAndRegister from '../layouts/Layout_LoginAndRegister'
 
 
 export const router = createBrowserRouter(
     [
+        // {
+
+        //     path: RUTAS.login,
+        //     element:
+
+        //         <PublicRoutes>
+        //             <Login />
+        //         </PublicRoutes>,
+
+        //     errorElement: < NotFound />,
+        // },
+        // {
+
+        //     path: RUTAS.register,
+        //     element:
+        //         <PublicRoutes>
+        //             <Register />
+        //         </PublicRoutes>,
+
+        //     errorElement: < NotFound />,
+        // },
+
         {
-
-            path: RUTAS.login,
-            element:
-
-                <Login />,
-
+            element: <Layout_LoginAndRegister />,
             errorElement: < NotFound />,
-        },
-        {
+            children: [
 
-            path: RUTAS.register,
-            element:
+                {
+                    path: RUTAS.login,
+                    element:
+                        <PublicRoutes>
+                            < Login />
+                        </PublicRoutes>
+                },
 
-                <Register />,
+                {
+                    path: RUTAS.register,
+                    element:
+                        <PublicRoutes>
+                            < Register />
 
-            errorElement: < NotFound />,
+                        </PublicRoutes>
+                },
+            ]
+
         },
         {
 
             element: <LayoutIndex />,
-
+            errorElement: < NotFound />,
             children: [
 
                 {
@@ -72,14 +105,20 @@ export const router = createBrowserRouter(
                     path: RUTAS.admin,
                     element:
 
-                        <Admin />
+                        < PrivateRoutes props={{ super: ROLES.super, admin: ROLES.admin }}  >
+                            <Admin />
+                        </PrivateRoutes>
+
 
                 },
                 {
                     path: RUTAS.superAdmin,
                     element:
 
-                        <SuperAdmin />
+                        < PrivateRoutes props={{ super: ROLES.super }} >
+                            < SuperAdmin />
+                        </PrivateRoutes>
+
 
                 },
                 // {

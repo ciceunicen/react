@@ -11,35 +11,9 @@ export default function AuthProvider({ children }) {
 
     const [token, setToken] = useState(null);
 
-
     const saveToken = (t) => setToken(t)
 
-
-
-    // const login = (data) => {
-    //     setUser({
-    //         // id: data.id,
-    //         // nombre: data.name,
-    //         // rol: data.rol,
-    //         // usuario: data.user,
-    //         // email: data.email
-    //     })
-    // }
-
-    // const saveUsuerLocal = (data) => {
-    //     localStorage.setItem("id_usuario", data.id)
-    //     localStorage.setItem("Usuario", data.user)
-    //     localStorage.setItem("Rol", data.rol)
-    //     setUser({
-    //         id: localStorage.getItem("id_usuario"),
-    //         usuario: localStorage.getItem("Usuario"),
-    //         rol: localStorage.getItem("Rol"),
-    //     })
-    // }
-
-
     const saveUsuerLocal = (data) => {
-        console.log(data)
         let rol = []
 
         data.rol.forEach(e => {
@@ -57,10 +31,9 @@ export default function AuthProvider({ children }) {
         return arr
     }
 
-
-
-    const deleteUserLocal = () => localStorage.clear()
-
+    const deleteUserLocal = () => {
+        localStorage.clear()
+    }
 
     const tieneToken = () => {
         let token = document.cookie.split("=")[1]
@@ -78,7 +51,6 @@ export default function AuthProvider({ children }) {
         return getRoleUser()?.includes(rol)
 
     }
-    // rol && user?.rol === rol
 
     const contextValue = {
         user,
@@ -91,8 +63,6 @@ export default function AuthProvider({ children }) {
         saveUsuerLocal,
         deleteUserLocal,
         saveToken,
-
-
     }
 
     return (

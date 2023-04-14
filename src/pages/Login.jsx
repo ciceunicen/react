@@ -7,16 +7,18 @@ import Logo from "../../public/images/logo-login-registro.png"
 import Eye_InputComponent from '../components/Eye_InputComponent';
 import { LoginServices } from '../services/LoginServices';
 import useAuth from '../helpers/auth/useAuth'
+import { mostrarAlertSuccess, mostrarAlertError } from '../helpers/sweetAlerts/Alerts';
+
 
 const Login = () => {
 
-    const [showPwd, setShowPwd] = useState(false)
-    const { saveToken, saveUsuerLocal } = useAuth();
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { saveToken, saveUsuerLocal, tieneToken, deleteUserLocal } = useAuth();
 
 
     let navigate = useNavigate();
-    const { register, handleSubmit, formState: { errors } } = useForm();
 
+    const [showPwd, setShowPwd] = useState(false)
     const [datos, setDatos] = useState({
         usuario: "",
         password: ""
@@ -30,6 +32,11 @@ const Login = () => {
         })
     }
 
+
+    if (!tieneToken()) {
+        deleteUserLocal()
+    }
+
     let enviarDatos = async (datosEnviados, e) => {
 
         let userData = {
@@ -40,15 +47,16 @@ const Login = () => {
             let data = await LoginServices(userData)
 
             if (Object.keys(data).length === 0) {
-                // toast.error(`${data}`)
-                // mostrarAlertError(data)
+
+                mostrarAlertError(data)
+
                 throw new Error(`${data}`)
             }
 
             let { token } = data;
             saveToken(token)
             saveUsuerLocal(data)
-            // mostrarAlertSuccess(data)
+            mostrarAlertSuccess(data)
             navigate("home")
         }
         catch (e) {

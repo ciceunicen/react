@@ -20,35 +20,61 @@ import PublicRoutes from '../routes/PublicRoutes'
 import LayoutIndex from '../layouts/LayoutIndex'
 import RUTAS from '../helpers/RutasHelpers'
 import ROLES from '../helpers/RolesHelpers'
+import Layout_LoginAndRegister from '../layouts/Layout_LoginAndRegister'
 
 
 export const router = createBrowserRouter(
     [
+        // {
+
+        //     path: RUTAS.login,
+        //     element:
+
+        //         <PublicRoutes>
+        //             <Login />
+        //         </PublicRoutes>,
+
+        //     errorElement: < NotFound />,
+        // },
+        // {
+
+        //     path: RUTAS.register,
+        //     element:
+        //         <PublicRoutes>
+        //             <Register />
+        //         </PublicRoutes>,
+
+        //     errorElement: < NotFound />,
+        // },
+
         {
-
-            path: RUTAS.login,
-            element:
-
-                <PublicRoutes>
-                    <Login />
-                </PublicRoutes>,
-
+            element: <Layout_LoginAndRegister />,
             errorElement: < NotFound />,
-        },
-        {
+            children: [
 
-            path: RUTAS.register,
-            element:
-                <PublicRoutes>
-                    <Register />
-                </PublicRoutes>,
+                {
+                    path: RUTAS.login,
+                    element:
+                        <PublicRoutes>
+                            < Login />
+                        </PublicRoutes>
+                },
 
-            errorElement: < NotFound />,
+                {
+                    path: RUTAS.register,
+                    element:
+                        <PublicRoutes>
+                            < Register />
+
+                        </PublicRoutes>
+                },
+            ]
+
         },
         {
 
             element: <LayoutIndex />,
-
+            errorElement: < NotFound />,
             children: [
 
                 {

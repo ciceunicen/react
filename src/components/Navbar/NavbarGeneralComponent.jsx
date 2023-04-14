@@ -1,16 +1,21 @@
 import RUTAS from '../../helpers/RutasHelpers';
-import { Navigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import UL_NavbarComponent from './UL_NavbarComponent';
 import ImagesComponents from '../ImagesComponents';
 
 import useAuth from '../../helpers/auth/useAuth';
+import { LogoutServices } from '../../services/LogoutServices';
 
 const NavComponent = () => {
 
-    let { tieneRol } = useAuth()
+    let { tieneRol, deleteUserLocal, user } = useAuth()
+
+    let navigate = useNavigate();
 
     const cerrarSesion = async () => {
-        return <Navigate to={RUTAS.login} />
+        await LogoutServices();
+        deleteUserLocal()
+        navigate(RUTAS.login)
     }
 
     return (

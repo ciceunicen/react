@@ -1,5 +1,4 @@
 import RUTAS from '../../helpers/RutasHelpers';
-import ROLES from '../../helpers/RolesHelpers';
 import LI_navbarComponent from './LI_navbarComponent';
 
 
@@ -11,12 +10,12 @@ const UL_NavbarComponent = ({ cerrarSesion, tieneRol }) => {
             <LI_navbarComponent to={RUTAS.about} sitio={RUTAS.about} />
 
             {
-                (tieneRol(ROLES.admin) || tieneRol(ROLES.superAdmin)) && (
+                (tieneRol("admin") || tieneRol("super_admin")) && (
                     <>
                         <LI_navbarComponent to={RUTAS.admin} sitio={RUTAS.admin} />
 
                         {
-                            tieneRol(ROLES.superAdmin) && (
+                            tieneRol("super_admin") && (
                                 <LI_navbarComponent to={RUTAS.superAdmin} sitio={RUTAS.superAdmin} />
                             )
                         }

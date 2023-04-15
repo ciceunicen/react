@@ -4,7 +4,6 @@ import { createBrowserRouter } from 'react-router-dom'
 //imports pages
 import Home from '../pages/Home'
 import About from '../pages/About'
-import Contact from '../pages/Contact'
 import NotFound from '../pages/NotFound'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
@@ -25,28 +24,6 @@ import Layout_LoginAndRegister from '../layouts/Layout_LoginAndRegister'
 
 export const router = createBrowserRouter(
     [
-        // {
-
-        //     path: RUTAS.login,
-        //     element:
-
-        //         <PublicRoutes>
-        //             <Login />
-        //         </PublicRoutes>,
-
-        //     errorElement: < NotFound />,
-        // },
-        // {
-
-        //     path: RUTAS.register,
-        //     element:
-        //         <PublicRoutes>
-        //             <Register />
-        //         </PublicRoutes>,
-
-        //     errorElement: < NotFound />,
-        // },
-
         {
             element: <Layout_LoginAndRegister />,
             errorElement: < NotFound />,
@@ -68,27 +45,15 @@ export const router = createBrowserRouter(
 
                         </PublicRoutes>
                 },
+
             ]
 
         },
-        {
 
+        {
             element: <LayoutIndex />,
             errorElement: < NotFound />,
             children: [
-
-                {
-                    path: RUTAS.help,
-
-                    children: [
-
-                        {
-                            path: RUTAS.contact,
-                            element:
-                                < Contact />
-                        },
-                    ]
-                },
 
                 {
                     path: RUTAS.home,
@@ -111,6 +76,7 @@ export const router = createBrowserRouter(
 
 
                 },
+
                 {
                     path: RUTAS.superAdmin,
                     element:
@@ -118,16 +84,7 @@ export const router = createBrowserRouter(
                         < PrivateRoutes props={{ super: ROLES.super }} >
                             < SuperAdmin />
                         </PrivateRoutes>
-
-
                 },
-                // {
-                //     path: RUTAS.register,
-                //     element:
-
-                //         <Register />
-
-                // },
             ]
         }
     ]

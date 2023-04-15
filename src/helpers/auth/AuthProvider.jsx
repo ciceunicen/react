@@ -5,7 +5,7 @@ export default function AuthProvider({ children }) {
 
     const [user, setUser] = useState({
         id: localStorage.getItem("id_usuario"),
-        usuario: localStorage.getItem("Usuario"),
+        email: localStorage.getItem("Email"),
         rol: localStorage.getItem("Rol"),
     })
 
@@ -20,7 +20,7 @@ export default function AuthProvider({ children }) {
             rol.push(e.tipo);
         });
         localStorage.setItem("id_usuario", data._id)
-        localStorage.setItem("Usuario", data.usuario)
+        localStorage.setItem("Email", data.email)
         localStorage.setItem("Rol", rol)
 
     }

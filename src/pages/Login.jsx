@@ -8,6 +8,9 @@ import Eye_InputComponent from '../components/Eye_InputComponent';
 import { LoginServices } from '../services/LoginServices';
 import useAuth from '../helpers/auth/useAuth'
 import { mostrarAlertSuccess, mostrarAlertError } from '../helpers/sweetAlerts/Alerts';
+import InformacionCICE from '../components/Login/InformacionCICE';
+import Btn_Ingresar from '../components/Login/Btn_Ingresar';
+import Btn_Registro from '../components/Login/Btn_Registro';
 
 
 const Login = () => {
@@ -15,12 +18,13 @@ const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { saveToken, saveUsuerLocal, tieneToken, deleteUserLocal } = useAuth();
 
-
     let navigate = useNavigate();
 
     const [showPwd, setShowPwd] = useState(false)
+    const [disabled, setdisabled] = useState(true)
+
     const [datos, setDatos] = useState({
-        usuario: "",
+        email: "",
         password: ""
     });
 
@@ -30,7 +34,17 @@ const Login = () => {
             ...datos,
             [e.target.name]: e.target.value
         })
+
+
     }
+
+    useEffect(() => {
+        if ((datos.email.length != 0 && datos.password.length != 0)) {
+            setdisabled(false)
+        } else {
+            setdisabled(true)
+        }
+    }, [datos.email, datos.password])
 
 
     if (!tieneToken()) {
@@ -38,19 +52,14 @@ const Login = () => {
     }
 
     let enviarDatos = async (datosEnviados, e) => {
-
         let userData = {
-            usuario: datosEnviados.usuario,
+            email: datosEnviados.email,
             pass: datosEnviados.password,
         }
         try {
             let data = await LoginServices(userData)
-
             if (Object.keys(data).length === 0) {
-
-                mostrarAlertError(data)
-
-                throw new Error(`${data}`)
+                return mostrarAlertError(data)
             }
 
             let { token } = data;
@@ -59,8 +68,8 @@ const Login = () => {
             mostrarAlertSuccess(data)
             navigate("home")
         }
-        catch (e) {
-            console.log(e.message)
+        catch (err) {
+            mostrarAlertError("Error de conexion")
         }
         e.target.reset()
     }
@@ -68,15 +77,7 @@ const Login = () => {
     return (
         <>
             <div className="login-container">
-                <div className="info-login">
-                    <img src={Logo} alt="" />
-                    <div className="info">
-                        <p>Campus Universitario</p>
-                        <p>Paraje Arroyo Seco S/N</p>
-                        <p>0249 438 5522</p>
-                        <p>info@cice.unicen.edu.ar</p>
-                    </div>
-                </div>
+                <InformacionCICE Logo={Logo} />
 
                 <div className="login-form-container">
                     <form className="form-login" action="" onSubmit={handleSubmit(enviarDatos)}>
@@ -86,12 +87,12 @@ const Login = () => {
                         <div className="inputLog">
                             <div className="labInput sig_form">
                                 <label className="label" htmlFor="">Email</label>
-                                <input className="input inputLog"
+                                <input className="input"
                                     type="text"
                                     name=""
 
                                     {
-                                    ...register("usuario", {
+                                    ...register("email", {
                                         required: {
                                             value: true,
                                             message: "*Campo requerido"
@@ -101,8 +102,8 @@ const Login = () => {
                                             message: "*El minimo son 4 caracteres"
                                         },
                                         maxLength: {
-                                            value: 20,
-                                            message: "*El maximo son 20 caracteres"
+                                            value: 40,
+                                            message: "*El maximo son 40 caracteres"
                                         },
                                     })
                                     }
@@ -111,15 +112,14 @@ const Login = () => {
 
 
                             </div>
-                            <small className='fail'>{errors?.usuario?.message}</small>
+                            <small className='fail'>{errors?.email?.message}</small>
                             <div className="labInput sig_form">
                                 <label className="label" htmlFor="">Contraseña</label>
                                 <div className="eye-password">
                                     <input
-                                        className="input input-eye inputLog"
+                                        className="input input-eye"
                                         type={showPwd ? "text" : "Password"}
                                         name=""
-
 
                                         {
                                         ...register("password", {
@@ -141,20 +141,15 @@ const Login = () => {
                                         // style={{ border: colorPassInput }}
                                         onChange={getDatos}
                                     />
-                                    <Eye_InputComponent setShowPwd={setShowPwd} showPwd={showPwd} />
+                                    <Eye_InputComponent cambiar={setShowPwd} mostrar={showPwd} />
                                 </div>
                                 <small className='fail'>{errors?.password?.message}</small>
                                 <a href="">¿Olvidaste tu contraseña?</a>
                             </div>
                         </div>
                         <div className="button-volver">
-                            <button className="button" >
-                                INGRESAR
-                            </button>
-                            <a >¿No sos usuario?</a>
-                            <button className="submit button" onClick={() => navigate("register")}>
-                                REGISTRARSE
-                            </button>
+                            <Btn_Ingresar disabled={disabled} />
+                            <Btn_Registro />
                         </div>
                     </form>
                 </div>

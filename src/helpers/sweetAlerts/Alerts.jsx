@@ -1,4 +1,5 @@
 import Swal from 'sweetalert2/dist/sweetalert2.js'
+import { useNavigate } from "react-router-dom";
 
 export function mostrarAlertSuccess(data) {
     Swal.fire({
@@ -6,7 +7,7 @@ export function mostrarAlertSuccess(data) {
         color: 'white',
         position: 'center',
         icon: 'success',
-        title: `Bienvendo ${data.usuario}`,
+        title: `Bienvendo ${data.email}`,
         showConfirmButton: false,
         timer: 1500
     })
@@ -22,4 +23,18 @@ export function mostrarAlertError(data) {
         showConfirmButton: true,
         confirmButtonColor: '#FFC900',
     })
+}
+
+export function successAndRedirect() {
+
+    Swal.fire({
+        width: '45%',
+        color: 'white',
+        position: 'center',
+        icon: 'success',
+        title: `Registrado con éxito`,
+        showConfirmButton: false,
+        timer: 1500,
+    })
+
 }

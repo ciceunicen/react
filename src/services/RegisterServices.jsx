@@ -1,6 +1,6 @@
 export const RegisterServices = async (user) => {
 
-    const URL_REGISTER = "http://localhost:5000/usuaris";
+    const URL_REGISTER = "http://localhost:5000/usuarios";
     let datosRegister = JSON.stringify(user);
     try {
 

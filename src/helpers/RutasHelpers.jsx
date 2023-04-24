@@ -3,7 +3,6 @@ const RUTAS = {
     home: "home",
     register: "register",
     about: "about",
-
     admin: "admin",
     superAdmin: "superAdmin"
 }

@@ -21,7 +21,7 @@ const TableUsers = ({ datos, cambiarDatos }) => {
                         datos.length > 0 &&
                         datos.map((user) =>
 
-                            (user.roles[0].tipo == "usuario" || user.roles[0].tipo == "admin") && (
+                            (user.roles[0].tipo == "default" || user.roles[0].tipo == "admin") && (
 
                                 <tr key={user._id}>
                                     <td>{user.nombre}</td>

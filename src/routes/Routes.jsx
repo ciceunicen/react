@@ -8,7 +8,7 @@ import NotFound from '../pages/NotFound'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
 import Admin from '../pages/Admin'
-import SuperAdmin, { LoaderTablaUsers } from '../pages/SuperAdmin'
+import SuperAdmin from '../pages/SuperAdmin'
 
 //imports rutas publicas y privadas
 import PrivateRoutes from '../routes/PrivateRoutes'
@@ -75,7 +75,7 @@ export const router = createBrowserRouter(
                         < PrivateRoutes props={{ super: ROLES.super }} >
                             < SuperAdmin />
                         </PrivateRoutes>,
-                    loader: LoaderTablaUsers
+                    // loader: LoaderTablaUsers
                 },
             ]
         }

@@ -1,0 +1,169 @@
+.tabla {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla caption {
+    width: 98%;
+    color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    background-color: #74AC24;
+    padding: 5px;
+    margin: auto auto;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.tabla tr {
+    width: 99%;
+    margin: auto auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    overflow: hidden;
+    background: #E5E5E5;
+    flex-wrap: nowrap;
+    border-bottom: 2px solid white;
+}
+
+.tabla th,
+.tabla td {
+    width: 100%;
+    font-size: 16px;
+    text-align: center;
+    margin: auto auto;
+}
+
+.js-borrar,
+.js-editar {
+    border-radius: 1rem;
+    width: 70%;
+    margin: 2px;
+    padding: .3rem;
+    overflow: hidden;
+    text-align: center;
+}
+
+.js-editar {
+    background-color: #74AC24;
+    color: #FFFFFF;
+}
+
+.js-borrar {
+    background-color: red;
+    color: #FFFFFF;
+}
+
+.tabla thead th {
+
+    background-color: #EAF7D8;
+    padding: 8px;
+    border: 1px white solid;
+    color: #496D17;
+}
+
+.tabla tbody tr:hover {
+    background: #e2f5c8;
+}
+
+
+/*--------------------------------------"RESPONSIVE X 670px"---------------------------*/
+
+
+
+@media all and (max-width:670px) {
+
+    .tabla {
+        border: 0px;
+    }
+
+    .tabla caption {
+        font-size: 22px;
+    }
+
+    .tabla thead {
+        display: none;
+    }
+
+    .tabla tr {
+        display: block;
+        margin-bottom: 0px;
+        /* border-bottom: 2px solid rgb(14, 14, 116); */
+        border-bottom: 2px solid white;
+
+    }
+
+    .tabla th,
+    .tabla td {
+        font-size: 12px;
+    }
+
+    .tabla td {
+        text-align: center;
+    }
+
+    .tabla td::before {
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+
+}
+
+
+
+/*--------------------------------------"RESPONSIVE" X 700px -----------------------------*/
+@media screen and (max-width:700px) {
+
+
+    .tabla {
+        border: 0px;
+    }
+
+    .tabla caption {
+        color: white;
+        font-size: 20px;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin: auto auto;
+
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+
+    .js-borrar,
+    .js-editar {
+        border-radius: 1rem;
+        width: 70%;
+        margin: 2px;
+        padding: .3rem;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    .tabla tr {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        overflow: hidden;
+        width: 100%;
+        background: #E5E5E5;
+
+        flex-wrap: nowrap;
+        border-bottom: 2px solid white;
+    }
+
+    .tabla th,
+    .tabla td {
+        font-size: 14px;
+    }
+
+
+
+}

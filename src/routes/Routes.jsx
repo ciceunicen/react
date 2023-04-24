@@ -8,7 +8,7 @@ import NotFound from '../pages/NotFound'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
 import Admin from '../pages/Admin'
-import SuperAdmin from '../pages/SuperAdmin'
+import SuperAdmin, { LoaderTablaUsers } from '../pages/SuperAdmin'
 
 //imports rutas publicas y privadas
 import PrivateRoutes from '../routes/PrivateRoutes'
@@ -36,18 +36,14 @@ export const router = createBrowserRouter(
                             < Login />
                         </PublicRoutes>
                 },
-
                 {
                     path: RUTAS.register,
                     element:
                         <PublicRoutes>
                             < Register />
-
                         </PublicRoutes>
                 },
-
             ]
-
         },
 
         {
@@ -62,28 +58,24 @@ export const router = createBrowserRouter(
                 },
                 {
                     path: RUTAS.about,
-                    element:
-                        < About />
+                    element: < About />
                 },
 
                 {
                     path: RUTAS.admin,
                     element:
-
                         < PrivateRoutes props={{ super: ROLES.super, admin: ROLES.admin }}  >
                             <Admin />
                         </PrivateRoutes>
-
-
                 },
 
                 {
                     path: RUTAS.superAdmin,
                     element:
-
                         < PrivateRoutes props={{ super: ROLES.super }} >
                             < SuperAdmin />
-                        </PrivateRoutes>
+                        </PrivateRoutes>,
+                    loader: LoaderTablaUsers
                 },
             ]
         }

@@ -1,5 +1,6 @@
 export const LogoutServices = async () => {
-    const URL_LOGOUT = "http://localhost:5000/api/logout";
+
+    const URL_LOGOUT = "http://localhost:5000/logout";
 
     try {
 

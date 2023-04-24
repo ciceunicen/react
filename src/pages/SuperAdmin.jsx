@@ -1,24 +1,42 @@
 import { useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router-dom'
 import TableUsers from '../components/tableUsers/tableUsers';
+import { mostrarAlertSuccess, mostrarAlertError } from '../helpers/sweetAlerts/Alerts';
 import { TieneToken } from '../helpers/TieneToken';
+import { ChangeRole } from '../services/ChangeRole';
 import { GetAllUsers } from '../services/GetAllUsers';
 
 
 const SuperAdmin = () => {
 
     let [userData, setUserData] = useState([]);
-    const data = useLoaderData()
+    const [edit, SetEdit] = useState(false);
 
-    let datos = data.data.user;
+    const cambiarDatos = async (id, rol) => {
+        SetEdit(false)
+        let token = await TieneToken()
+        let res = await ChangeRole(token, id, rol)
 
-    const cambiarDatos = (id) => {
-        console.log(id)
+        if (res.ok) {
+            SetEdit(true)
+            mostrarAlertSuccess("Modificación exitosa")
+            return;
+        } else {
+            mostrarAlertError(res.data)
+
+        }
     }
 
     useEffect(() => {
-        setUserData(datos)
-    }, [])
+        async function getAllUsers() {
+            let token = await TieneToken()
+            let data = await GetAllUsers(token)
+            if (data.ok) {
+                let datos = data.data.user;
+                setUserData(datos)
+            }
+        }
+        getAllUsers();
+    }, [edit])
 
     return (
         <TableUsers datos={userData} cambiarDatos={cambiarDatos} />
@@ -26,11 +44,3 @@ const SuperAdmin = () => {
 }
 
 export default SuperAdmin
-
-
-export const LoaderTablaUsers = async () => {
-    let token = TieneToken()
-    let data = await GetAllUsers(token)
-    if (data.ok)
-        return data
-}

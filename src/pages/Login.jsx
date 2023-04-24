@@ -63,9 +63,8 @@ const Login = () => {
             }
 
             let { token } = data;
-            // saveToken(token)
             saveUsuerLocal(data, token)
-            mostrarAlertSuccess(data)
+            mostrarAlertSuccess(`Bienvenido ${data.email}`)
             navigate("home")
         }
         catch (err) {
@@ -128,8 +127,8 @@ const Login = () => {
                                                 message: "*Campo requerido"
                                             },
                                             minLength: {
-                                                value: 6,
-                                                message: "*El minimo son 6 caracteres"
+                                                value: 8,
+                                                message: "*El minimo son 8 caracteres"
                                             },
                                             maxLength: {
                                                 value: 20,

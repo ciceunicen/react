@@ -1,5 +1,5 @@
 import RUTAS from '../../helpers/RutasHelpers';
-import { Navigate, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import UL_NavbarComponent from './UL_NavbarComponent';
 import ImagesComponents from '../ImagesComponents';
 import Logo from "../../images/logo-login-registro.png"
@@ -10,7 +10,7 @@ import { LogoutServices } from '../../services/LogoutServices';
 
 const NavComponent = () => {
 
-    let { tieneRol, deleteUserLocal, user } = useAuth()
+    let { tieneRol, deleteUserLocal } = useAuth()
 
     let navigate = useNavigate();
 

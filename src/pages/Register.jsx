@@ -57,18 +57,18 @@ const Register = () => {
         }
         try {
             let data = await RegisterServices(registerData)
-
             if (data.ok) {
-                successAndRedirect(data)
+                successAndRedirect("Registrado con éxito")
                 setTimeout(() => {
                     navigate("/")
                 }, 1500)
-                return
+
+            } else {
+                return mostrarAlertError(data.message)
             }
-            return mostrarAlertError(data.error)
         }
         catch (e) {
-            console.log(e.message)
+            console.log(e)
         }
         e.target.reset()
     }
@@ -167,8 +167,8 @@ const Register = () => {
                                             message: "*Campo requerido"
                                         },
                                         minLength: {
-                                            value: 6,
-                                            message: "*El minimo son 6 caracteres"
+                                            value: 8,
+                                            message: "*El minimo son 8 caracteres"
                                         },
                                         maxLength: {
                                             value: 20,
@@ -195,8 +195,8 @@ const Register = () => {
                                             message: "*Campo requerido"
                                         },
                                         minLength: {
-                                            value: 6,
-                                            message: "*El minimo son 6 caracteres"
+                                            value: 8,
+                                            message: "*El minimo son 8 caracteres"
                                         },
                                         maxLength: {
                                             value: 20,

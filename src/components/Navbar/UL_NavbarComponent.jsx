@@ -10,12 +10,12 @@ const UL_NavbarComponent = ({ cerrarSesion, tieneRol }) => {
             <LI_navbarComponent to={RUTAS.about} sitio={RUTAS.about} />
 
             {
-                (tieneRol("admin") || tieneRol("super_admin")) && (
+                (tieneRol("admin") || tieneRol("superAdmin")) && (
                     <>
                         <LI_navbarComponent to={RUTAS.admin} sitio={RUTAS.admin} />
 
                         {
-                            tieneRol("super_admin") && (
+                            tieneRol("superAdmin") && (
                                 <LI_navbarComponent to={RUTAS.superAdmin} sitio={RUTAS.superAdmin} />
                             )
                         }

@@ -2,6 +2,8 @@ import RUTAS from '../../helpers/RutasHelpers';
 import { Navigate, useNavigate } from 'react-router-dom'
 import UL_NavbarComponent from './UL_NavbarComponent';
 import ImagesComponents from '../ImagesComponents';
+import Logo from "../../images/logo-login-registro.png"
+
 
 import useAuth from '../../helpers/auth/useAuth';
 import { LogoutServices } from '../../services/LogoutServices';
@@ -23,7 +25,7 @@ const NavComponent = () => {
             <div className="containerNav">
                 <div className="navbarDiv">
                     <a href={RUTAS.home}>
-                        <ImagesComponents src="./public/images/male_avatar.svg" className="logoNav" href={RUTAS.login}></ImagesComponents>
+                        <ImagesComponents src={Logo} className="logoNav" href={RUTAS.login}></ImagesComponents>
                     </a>
                     <UL_NavbarComponent cerrarSesion={cerrarSesion} tieneRol={tieneRol} />
                 </div>

@@ -7,7 +7,7 @@ import useAuth from '../helpers/auth/useAuth'
 
 import Eye_InputComponent from "../components/Eye_InputComponent"
 import InformacionCICE from "../components/Login/InformacionCICE"
-import Logo from "../../public/images/logo-login-registro.png"
+import Logo from "../images/logo-login-registro.png"
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();

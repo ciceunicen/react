@@ -5,6 +5,8 @@ import App from './App'
 import './css/general.css'
 import './css/navbarStyles.css'
 import './css/login_cice.css'
+import './css/listaUsuarios.css'
+
 
 
 

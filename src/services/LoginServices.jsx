@@ -1,5 +1,5 @@
 export const LoginServices = async (user) => {
-    const URL_LOGIN = "http://localhost:5000/api/login";
+    const URL_LOGIN = "http://localhost:5000/auth/login";
 
     let datosLogin = JSON.stringify(user);
 

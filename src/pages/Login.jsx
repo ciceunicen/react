@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from 'react-hook-form'
 
 import RUTAS from '../helpers/RutasHelpers';
-import Logo from "../../public/images/logo-login-registro.png"
+import Logo from "../images/logo-login-registro.png"
 import Eye_InputComponent from '../components/Eye_InputComponent';
 import { LoginServices } from '../services/LoginServices';
 import useAuth from '../helpers/auth/useAuth'
@@ -63,8 +63,8 @@ const Login = () => {
             }
 
             let { token } = data;
-            saveToken(token)
-            saveUsuerLocal(data)
+            // saveToken(token)
+            saveUsuerLocal(data, token)
             mostrarAlertSuccess(data)
             navigate("home")
         }

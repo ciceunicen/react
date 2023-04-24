@@ -6,15 +6,11 @@ import RUTAS from '../helpers/RutasHelpers';
 
 const LayoutIndex = () => {
 
-
     let { tieneToken } = useAuth()
-
-
 
     if (!tieneToken()) {
         return <Navigate to={RUTAS.login} />
     }
-
 
     return (
         <div className="root-layout">

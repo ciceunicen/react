@@ -13,8 +13,10 @@ export default function AuthProvider({ children }) {
 
     const saveToken = (t) => setToken(t)
 
-    const saveUsuerLocal = (data) => {
+
+    const saveUsuerLocal = (data, token) => {
         let rol = []
+        saveToken(token)
 
         data.rol.forEach(e => {
             rol.push(e.tipo);
@@ -22,11 +24,10 @@ export default function AuthProvider({ children }) {
         localStorage.setItem("id_usuario", data._id)
         localStorage.setItem("Email", data.email)
         localStorage.setItem("Rol", rol)
-
     }
 
     const getRoleUser = () => {
-        let str = localStorage.getItem("Rol")
+        let str = localStorage?.getItem("Rol")
         let arr = str.split(',');
         return arr
     }
@@ -49,7 +50,6 @@ export default function AuthProvider({ children }) {
 
     const tieneRol = (rol) => {
         return getRoleUser()?.includes(rol)
-
     }
 
     const contextValue = {

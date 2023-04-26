@@ -7,6 +7,7 @@ export const GetAllUsers = async (token) => {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`,
             },
+            credentials: "include"
         })
 
         let data = await res.json();

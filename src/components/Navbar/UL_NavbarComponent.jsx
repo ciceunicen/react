@@ -6,24 +6,24 @@ const UL_NavbarComponent = ({ cerrarSesion, tieneRol }) => {
 
     return (
         <ul>
-            <LI_navbarComponent to={RUTAS.home} sitio={RUTAS.home} />
-            <LI_navbarComponent to={RUTAS.about} sitio={RUTAS.about} />
+            <LI_navbarComponent to={RUTAS.home} sitio="Home" />
+            <LI_navbarComponent to={RUTAS.about} sitio="About" />
 
             {
                 (tieneRol("admin") || tieneRol("superAdmin")) && (
                     <>
-                        <LI_navbarComponent to={RUTAS.admin} sitio={RUTAS.admin} />
+                        <LI_navbarComponent to={RUTAS.admin} sitio="Admin" />
 
                         {
                             tieneRol("superAdmin") && (
-                                <LI_navbarComponent to={RUTAS.superAdmin} sitio={RUTAS.superAdmin} />
+                                <LI_navbarComponent to={RUTAS.superAdmin} sitio="Super Admin" />
                             )
                         }
                     </>
                 )
             }
 
-            <LI_navbarComponent to={RUTAS.login} onClick={cerrarSesion} sitio="cerrar Sesion" />
+            <LI_navbarComponent to={RUTAS.login} onClick={cerrarSesion} sitio="Cerrar Sesion" />
         </ul>
     )
 }

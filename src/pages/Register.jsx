@@ -57,13 +57,17 @@ const Register = () => {
         }
         try {
             let data = await RegisterServices(registerData)
+
             if (data.ok) {
                 successAndRedirect("Registrado con éxito")
                 setTimeout(() => {
                     navigate("/")
                 }, 1500)
 
-            } else {
+            } else if (data.length >= 1) {
+                return mostrarAlertError(data[0].message)
+            }
+            else {
                 return mostrarAlertError(data.message)
             }
         }

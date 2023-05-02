@@ -12,13 +12,25 @@ export const RegisterServices = async (user) => {
             credentials: "include",
             "body": datosRegister
         });
+
         const data = await response.json()
 
         if (response.ok) {
+            console.log(data)
             return data
         }
 
-        return data;
+        else if (data?.error) {
+            let errores = [];
+            data?.error.forEach(e => {
+                errores.push({ message: e.msg })
+            });
+            return errores
+        }
+        else {
+            return data;
+        }
+
     }
     catch (e) {
         return { message: "Error de servidor" }
